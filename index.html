@@ -10,6 +10,13 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:ital,wght@0,100..900;1,100..900&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
         <style>
+            #gallery {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 125px;
+                padding: 20px;
+                justify-items: center;
+            }
         </style>
     </head>
     <body>
@@ -50,18 +57,11 @@
             <section id = "projects">
                 <h2>Projects</h2>
                 <p>A couple of projects I've worked on: </p>
-                <dl>
-                    <dt>Developer Journal:</dt>
-                    <dd>Teamwork, Multi-Language Programming, Full-Stack Development</dd>
-                    <dd>Project Link: <a href = "https://cse110-sp24-group26.github.io/final-project/">https://cse110-sp24-group26.github.io/final-project/</a></dd>
 
-                    <dt>File Compression/Decompression: </dt>
-                    <dd>Data Structures & Algorithms, C++ (Used Stacks, Vectors, and Priority Queues)</dd>
+                <div id = "gallery">
 
-                    <dt>Brooklyn Property Price Predictors: </dt>
-                    <dd>Python, Python Libraries, Teamwork</dd>
-                    <dd>Project Link: <a href = "https://github.com/COGS108/Group044_WI24/blob/master/FinalProject_Group044_WI24.ipynb">https://github.com/COGS108/Group044_WI24/blob/master/FinalProject_Group044_WI24.ipynb</a></dd>
-                </dl>
+                </div>
+
                 <hr>
             </section>
 
@@ -95,7 +95,42 @@
             <p> Santiago created this website using <del>Python</del> <ins>HTML</ins>, CSS, and JavaScript!</p>
         </footer>
 
-        <script src = "script.js"></script>
+        <script type = "module" src = "./component.js"></script>
+        <script>
+            window.addEventListener('DOMContentLoaded', async () => {
+                console.log("DOM Content Loaded");
+                const url = "https://api.jsonbin.io/v3/b/67d5f8058a456b7966768730";
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`Response status: ${response.status}`);
+                    }
+
+                    const jsonData = await response.json();
+                    console.log(jsonData);
+                    const records = jsonData.record.record;
+                    for (const proj of records) {
+                        window.galleryItem = document.createElement("project-card");
+                        window.galleryItem.setAttribute("year", `${proj.year}`);
+                        window.galleryItem.setAttribute("project", `${proj.project}`);
+                        window.galleryItem.setAttribute("image-url", `${proj.image_url}`);
+                        window.galleryItem.setAttribute("project-url", `${proj.project_url}`);
+                        window.galleryItem.setAttribute("description", `${proj.description}`);
+
+                        document.getElementById("gallery").appendChild(window.galleryItem);
+                        console.log(`${proj.year} ${proj.project} ${proj.image_url} ${proj.project_url} ${proj.description}`);
+                    }
+                }
+                catch (error) {
+                    console.error(error.message);
+                }
+            });
+
+            document.getElementById("gallery").addEventListener('click-project', (event) => {
+                let target = event.target;
+                target.style.border = target.style.border == "" ? "3px solid grey" : "";
+            });
+        </script>
         <noscript>Your browser does not support JavaScript!</noscript>
     </body>
 </html>

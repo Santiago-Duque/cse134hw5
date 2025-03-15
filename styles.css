@@ -30,7 +30,6 @@ h1, h2, p, label, a, li, dt, dd, span, output, section, form, fieldset, ins, del
     background-color: var(--bg-color);
 }
 
-
 button.theme-toggle {
     background: none;
     border: none;
