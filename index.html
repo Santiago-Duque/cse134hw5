@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name = "viewport" content="width=device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+        <title>Santiago Duque</title>
+        <link rel = "icon" href = "favicon.ico">
+        <link rel = "stylesheet" href = "styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Raleway:ital,wght@0,100..900;1,100..900&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+        <style>
+        </style>
+    </head>
+    <body>
+        <header>
+            <dialog open>
+                <p>Hi there, welcome to my website!</p>
+                <form method = "dialog">
+                    <button>Hi!</button>
+                </form>
+            </dialog>
+            <h1>Santiago Duque</h1>
+            <nav>
+                <ul>
+                    <li><a href = "#home">Home</a></li>
+                    <li><a href = "#aboutme">About Me</a></li>
+                    <li><a href = "#projects">Projects</a></li>
+                    <li><a href = "#contact">Contact Me</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section id = "home">
+                <h2>Santiago Duque</h2>
+                <p>Software Engineer | Computer Science Student at UCSD</p>
+            </section>
+
+            <section id = "aboutme">
+                <h2 id = "abtmeh2">About Me:</h2>
+                <div class = "abtcontainer">
+                    <picture>
+                        <img src = "Picofme.png" alt = "Picture of Me">
+                    </picture>
+                    <p id = "me">Hello there! I am Santiago Duque, a motivated computer science student studying at the University of California San Diego. During my free time, I like gaming, going to concerts/festivals, and going to amusement parks!</p>
+                </div> 
+                <hr>
+            </section>
+
+            <section id = "projects">
+                <h2>Projects</h2>
+                <p>A couple of projects I've worked on: </p>
+                <dl>
+                    <dt>Developer Journal:</dt>
+                    <dd>Teamwork, Multi-Language Programming, Full-Stack Development</dd>
+                    <dd>Project Link: <a href = "https://cse110-sp24-group26.github.io/final-project/">https://cse110-sp24-group26.github.io/final-project/</a></dd>
+
+                    <dt>File Compression/Decompression: </dt>
+                    <dd>Data Structures & Algorithms, C++ (Used Stacks, Vectors, and Priority Queues)</dd>
+
+                    <dt>Brooklyn Property Price Predictors: </dt>
+                    <dd>Python, Python Libraries, Teamwork</dd>
+                    <dd>Project Link: <a href = "https://github.com/COGS108/Group044_WI24/blob/master/FinalProject_Group044_WI24.ipynb">https://github.com/COGS108/Group044_WI24/blob/master/FinalProject_Group044_WI24.ipynb</a></dd>
+                </dl>
+                <hr>
+            </section>
+
+            <section id = "contact">
+                <h2>Contact Me</h2>
+                <form id = "formforcontact" method = "POST" action = "https://httpbin.org/post">
+                    <fieldset>
+                        <label for = "name">Name <span class = "req">*</span></label>
+                        <input type = "text" id = "name" name = "name" placeholder="Name" required pattern="[A-Za-z\s]+" minlength="2" maxlength="35">
+                        
+                        <label for = "email">Email <span class = "req">*</span></label>
+                        <input type = "email" id = "email" name = "email" placeholder="Email" required>
+
+                        <label for = "message">Message <span class = "req">*</span></label>
+                        <textarea id = "msg" name = "msg" rows = "3" cols = "30" placeholder="Message" required minlength="10" maxlength="100"></textarea>
+
+                        <input type = "hidden" name = "possible_bot" value = "true">
+                        <button type = "submit" id = "check">Send</button>
+
+                        <output id ="error-name"></output>
+                        <output id ="error-email"></output>
+                        <output id ="error-msg"></output>
+                        <output id = "info-message"></output>
+                        
+                        <p id = "log"></p>
+                    </fieldset>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p> Santiago created this website using <del>Python</del> <ins>HTML</ins>, CSS, and JavaScript!</p>
+        </footer>
+
+        <script src = "script.js"></script>
+        <noscript>Your browser does not support JavaScript!</noscript>
+    </body>
+</html>
