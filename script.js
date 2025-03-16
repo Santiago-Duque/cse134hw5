@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         if (localData) {
             const projects = JSON.parse(localData);
             projects.forEach(projectCard);
+            console.log("local data populated");
         }
 
         else {
@@ -53,6 +54,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
             const projects = jsonData.record.record;
             localStorage.setItem("projects", JSON.stringify(projects));
             projects.forEach(projectCard);
+            console.log("remote data populated");
         }
         catch (error) {
             console.error("error fetching remote data: ", error);

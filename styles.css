@@ -25,6 +25,14 @@ header {
     color: var(--header-text);
 }
 
+hr {
+    border: 1px solid rgb(210, 210, 212);
+}
+
+#gallery {
+    background-color: var(--bg-color);
+}
+
 h1, h2, p, label, a, li, dt, dd, span, output, section, form, fieldset, ins, del, input { 
     color: var(--text-color);
     background-color: var(--bg-color);
