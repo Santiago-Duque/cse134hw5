@@ -10,6 +10,57 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const form = document.getElementById("formforcontact");
     let form_errors = [];
 
+    const gallery = document.getElementById("gallery");
+    const loadlocal = document.getElementById("load-local");
+    const loadremote = document.getElementById("load-remote");
+    const jsonurl = "https://api.jsonbin.io/v3/b/67d5f8058a456b7966768730";
+
+    function projectCard(proj) {
+        const projectcard = document.createElement("project-card");
+        projectcard.setAttribute("year", proj.year);
+        projectcard.setAttribute("project", proj.project);
+        projectcard.setAttribute("image-url", proj.image_url);
+        projectcard.setAttribute("project-url", proj.project_url);
+        projectcard.setAttribute("description", proj.description);
+        gallery.appendChild(projectcard);
+    }
+
+    function blankGallery() {
+        gallery.innerHTML = "";
+    }
+
+    function loadLocalData() {
+        blankGallery();
+        const localData = localStorage.getItem("projects");
+        if (localData) {
+            const projects = JSON.parse(localData);
+            projects.forEach(projectCard);
+        }
+
+        else {
+            console.log("no local data found, try remote first");
+        }
+    }
+
+    async function loadRemoteData() {
+        blankGallery();
+        try {
+            const response = await fetch(jsonurl);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+            const jsonData = await response.json();
+            const projects = jsonData.record.record;
+            localStorage.setItem("projects", JSON.stringify(projects));
+            projects.forEach(projectCard);
+        }
+        catch (error) {
+            console.error("error fetching remote data: ", error);
+        }
+    }
+    loadlocal.addEventListener("click", loadLocalData);
+    loadremote.addEventListener("click", loadRemoteData);
+
     inputname.addEventListener("input", (e) => {
 
         if (inputname.value.length == 0) {
