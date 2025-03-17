@@ -99,41 +99,6 @@
         </footer>
 
         <script type = "module" src = "./component.js"></script>
-        <script>
-            window.addEventListener('DOMContentLoaded', async () => {
-                console.log("DOM Content Loaded");
-                const url = "https://api.jsonbin.io/v3/b/67d5f8058a456b7966768730";
-                try {
-                    const response = await fetch(url);
-                    if (!response.ok) {
-                        throw new Error(`Response status: ${response.status}`);
-                    }
-
-                    const jsonData = await response.json();
-                    console.log(jsonData);
-                    const records = jsonData.record.record;
-                    for (const proj of records) {
-                        window.galleryItem = document.createElement("project-card");
-                        window.galleryItem.setAttribute("year", `${proj.year}`);
-                        window.galleryItem.setAttribute("project", `${proj.project}`);
-                        window.galleryItem.setAttribute("image-url", `${proj.image_url}`);
-                        window.galleryItem.setAttribute("project-url", `${proj.project_url}`);
-                        window.galleryItem.setAttribute("description", `${proj.description}`);
-
-                        document.getElementById("gallery").appendChild(window.galleryItem);
-                        console.log(`${proj.year} ${proj.project} ${proj.image_url} ${proj.project_url} ${proj.description}`);
-                    }
-                }
-                catch (error) {
-                    console.error(error.message);
-                }
-            });
-
-            document.getElementById("gallery").addEventListener('click-project', (event) => {
-                let target = event.target;
-                target.style.border = target.style.border == "" ? "3px solid grey" : "";
-            });
-        </script>
         <noscript>Your browser does not support JavaScript!</noscript>
     </body>
 </html>
